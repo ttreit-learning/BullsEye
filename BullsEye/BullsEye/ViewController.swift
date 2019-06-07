@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     var targetValue: Int = 0
     
     @IBOutlet weak var slider2: UISlider!
+    @IBOutlet weak var targetValueLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,6 @@ class ViewController: UIViewController {
         let roundedValue = slider1.value.rounded()
         print("Rounded slider is at \(roundedValue)")
         currentSliderPosition = Int(roundedValue)
-        
     }
     
     func startRound() {
@@ -49,6 +49,7 @@ class ViewController: UIViewController {
 
     func setTarget() {
         targetValue = Int.random(in: 1...100)
+        targetValueLabel.text = String(targetValue)
     }
     
     func sliderHandler() {
