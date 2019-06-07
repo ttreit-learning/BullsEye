@@ -11,8 +11,13 @@ import UIKit
 class ViewController: UIViewController {
     var currentSliderPosition: Int = 0
     var targetValue: Int = 0
+    var currentScore: Int = 0
+    var totalScore: Int = 0
+    var scoreBonus: Int = 100
+    
     
     @IBOutlet weak var slider2: UISlider!
+    @IBOutlet weak var targetValueLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +26,9 @@ class ViewController: UIViewController {
     }
 
     @IBAction func showAlert() {
-        let message = "You hit \(currentSliderPosition) \nYour target was \(targetValue)"
+        calculateCurrentScore()
+        let message = "You hit \(currentSliderPosition) \nYour target was \(targetValue). \nYour score this round was \(currentScore)"
+        
         let alert = UIAlertController(title: "Bull's Eye", message: message, preferredStyle: .alert)
         
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -39,7 +46,6 @@ class ViewController: UIViewController {
         let roundedValue = slider1.value.rounded()
         print("Rounded slider is at \(roundedValue)")
         currentSliderPosition = Int(roundedValue)
-        
     }
     
     func startRound() {
@@ -49,12 +55,35 @@ class ViewController: UIViewController {
 
     func setTarget() {
         targetValue = Int.random(in: 1...100)
+        targetValueLabel.text = String(targetValue)
     }
     
     func sliderHandler() {
         currentSliderPosition = 50
         slider2.value = Float(currentSliderPosition)
     }
+    
+    func calculateCurrentScore() {
+        var difference: Int
+        difference = currentSliderPosition - targetValue
+        if difference < 0 {
+            difference = difference * -1
+        }
+        currentScore = 100 - difference
+        if currentScore == 100 {
+            currentScore = 100 + scoreBonus
+        }
+        totalScore = totalScore + currentScore
+        }
+        
+        
+        //if currentSliderPosition > targetValue {
+          //  currentScore = 100 - (currentSliderPosition - targetValue)
+        //} else if currentSliderPosition < targetValue {
+          //  currentScore = 100 - (targetValue - currentSliderPosition)
+        //} else {
+          //  currentScore = 200
+    
     
 }
 

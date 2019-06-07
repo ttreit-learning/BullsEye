@@ -104,6 +104,7 @@
                     </view>
                     <connections>
                         <outlet property="slider2" destination="nrW-0x-3mM" id="eWa-aX-eSq"/>
+                        <outlet property="targetValueLabel" destination="zLg-0T-4aF" id="azl-ah-BXv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
